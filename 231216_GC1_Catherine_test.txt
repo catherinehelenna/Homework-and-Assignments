@@ -1,0 +1,99 @@
+'''
+=================================================
+Graded Challenge 1
+
+Nama  : Catherine Helenna Mulyadi
+Batch : RMT-027
+
+This is the testing program for the shopping cart program in
+catherine_app.py.
+
+Note: Further explanations will be found along the code lines.
+=================================================
+'''
+
+
+from catherine_app import ShoppingCart
+from catherine_app import CartItem
+import unittest
+
+class TestLibrary(unittest.TestCase):
+    '''
+    1. this class will test each method used in catherine_app.py file.
+    2. each test method will have defined input values and tested by comparing with known values.
+    3. the assertion functions used to confirm successful tests: self.assertEqual() and self.assertIs()
+    
+    '''
+    # first test case: does add item method work?
+    def test_add_item(self):
+        sc = ShoppingCart()
+        # sample inputs for the testing
+        item1 = CartItem("coklat", 3000)
+        item2 = CartItem("bunga", 15000)
+        item3 = CartItem("kue", 6000)
+        sc.add_item(item1)
+        sc.add_item(item2)
+        sc.add_item(item3)
+
+        # calculate the number of items inside the cart
+        total_item = len(sc.shoppingcart)
+
+        # assertion to confirm how many items inside the cart with known value
+        self.assertEqual(total_item, 3)
+    
+    # second test case: 
+    # note: when testing, it's not necessary to put the attribute except "self"
+    def test_delete_item(self):
+        sc = ShoppingCart()
+        # sample inputs
+        item1 = CartItem("coklat", 3000)
+        item2 = CartItem("bunga", 15000)
+        item3 = CartItem("kue", 6000)
+        sc.add_item(item1)
+        sc.add_item(item2)
+        sc.add_item(item3)
+        sc.delete_item("coklat")
+
+        # calculate the number of items inside the cart
+        total_item = len(sc.shoppingcart)
+
+        # assertion to confirm how many items inside the cart with known value
+        self.assertEqual(total_item, 2)
+
+    # third test case:
+    def test_show_cart(self):
+        sc = ShoppingCart()
+        # input one value for testing
+        item1 = CartItem("coklat", 3000)
+        sc.add_item(item1)
+        sc.show_cart()
+        # variable to store the desired output
+        expected_output = print(f"{0}. {item1.item_name} - Rp. {item1.item_value}")
+
+        # assertion by confirming if the output is the expected output
+        self.assertIs(sc.show_cart(), expected_output)
+
+    def test_total_amount(self):
+        sc = ShoppingCart()
+        # sample inputs
+        item1 = CartItem("coklat", 3000)
+        item2 = CartItem("bunga", 15000)
+        item3 = CartItem("kue", 6000)
+        sc.add_item(item1)
+        sc.add_item(item2)
+        sc.add_item(item3)
+        sc.total_amount()
+        
+        # our unit test calculator from known inputs
+        sum = item1.item_value + item2.item_value + item3.item_value
+        # pre-designed formatted printed values for checking similarity with sc.total_amount()
+        expected_output = print(f"Total belanja: Rp.{'%.2f' %sum}")
+
+        # assertion by comparing the output
+        self.assertIs(sc.total_amount(), expected_output)
+
+
+#run unittest
+unittest.main()
+
+
