@@ -12,4 +12,5 @@ Hope that these files can be an inspiration for practicing for you too.
 Thank you for reading, all the best!!
 
 Love, Catherine <3
+
 Note: NGC means Non-Graded Challenge
